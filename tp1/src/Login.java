@@ -7,38 +7,44 @@ import java.util.Scanner;
 
 public class Login {
     public static void main(String[] args) {
-        HashMap<String, String> userDatabase = loadUserDatabase("/ENSAI-2A-Java-TP/tp1/src/data/user_hashpwd.csv");
+        HashMap<String, String> userDatabase = loadUserDatabase("../data/user_hashpwd.csv");
         Scanner scanner = new Scanner(System.in);
-        Scanner scanner_2 = new Scanner(System.in);
+
+        int compteur = 0;
 
         while (true) {
 
-            System.out.print("Enter username: ");
-            String username = scanner.nextLine();
+            while (compteur < 3) {
 
-            scanner.close();
+                System.out.print("Enter username: ");
+                String username = scanner.nextLine();
 
-            for (Map.Entry<String, String> entry : userDatabase.entrySet()) {
-                String key = entry.getKey();
-                Integer value = entry.getValue();
                 if (userDatabase.containsKey(username)) {
 
                     System.out.print("Enter password: ");
-                    String password = scanner_2.nextLine();
+                    String password = scanner.nextLine();
+                    String password_user = userDatabase.get(username);
 
-                    scanner_2.close();
+                    if (password.equals(password_user)) {
 
-                    if(userDatabase.containsValue(password)){
                         System.out.println("Login successful!");
+
                     } else {
+
+                        compteur = compteur + 1;
                         System.out.println("Password Incorrect");
+
                     }
-                    
+
                 } else {
                     System.out.println("Username does not exist in the database.");
-                
+
                 }
             }
+
+            System.out.println("Too much tentatives");
+            scanner.close();
+        }
     }
 
     /**
