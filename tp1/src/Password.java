@@ -1,5 +1,6 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -135,7 +136,49 @@ public class Password {
      */
     public static String generatePassword(int nbCar) {
 
-        // Code here
+        if (nbCar < 4) {
+        throw new IllegalArgumentException("Password length must be at least 4 characters.");
+        }
+
+        String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        String digits = "0123456789";
+        String specialChars = "!@#$%^&*()-+";
+
+        String allChars = upperCase + lowerCase + digits + specialChars;
+
+        SecureRandom random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+
+        // Ensure at least one character from each required set is included
+
+        /* crée un indice pour chacune des listes de manière aléatoire puis vient sélectionner le character en question */
+        /* M. Deneuville propose : */
+        
+        // Generate random int between 0 and 20
+        // SecureRandom random = new SecureRandom();
+        // System.out.println(random.nextInt(21));
+
+        password.append(upperCase.charAt(random.nextInt(upperCase.length())));
+        password.append(lowerCase.charAt(random.nextInt(lowerCase.length())));
+        password.append(digits.charAt(random.nextInt(digits.length())));
+        password.append(specialChars.charAt(random.nextInt(specialChars.length())));
+
+        // Fill remaining characters randomly
+        /* rempli avec des characters inutiles en plus */
+        for (int i = 4; i < nbCar; i++) {
+            password.append(allChars.charAt(random.nextInt(allChars.length())));
+        }
+
+        // Shuffle the characters
+        /* mélange les characters */
+        StringBuilder shuffledPassword = new StringBuilder(password.length());
+        while (password.length() != 0) {
+            int randPos = random.nextInt(password.length());
+            shuffledPassword.append(password.charAt(randPos));
+            password.deleteCharAt(randPos);
+        }
+        
 
         return null;
     }
