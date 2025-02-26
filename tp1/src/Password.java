@@ -159,6 +159,7 @@ public class Password {
          * crée un indice pour chacune des listes de manière aléatoire puis vient
          * sélectionner le character en question
          */
+        
         /* M. Deneuville propose : */
 
         // Generate random int between 0 and 20
