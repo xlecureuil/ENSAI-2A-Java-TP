@@ -40,7 +40,12 @@ public class Password {
      */
     public static String bruteForce6Digit(String targetHash) {
 
-        // Code here
+        for (int i = 0; i <= 999999; i++) {
+            String number = String.format("%06d", i);
+            if (hashPassword(number).equals(targetHash)) {
+                return number;
+            }
+        }
 
         return null;
     }
@@ -61,10 +66,37 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        // Code here
+        if (password.length() < 12) return false;
+        if (!password.matches(".*[A-Z].*")) return false;
+        if (!password.matches(".*[a-z].*")) return false;
+        if (!password.matches(".*\\d.*")) return false;
+        if (password.matches(".*\\s.*")) return false;
 
-        return false;
+        return true;
     }
+
+
+    // /* Ou bien en parcourant le mot de passe */
+    // public static boolean isStrongPassword_2(String password) {
+    //     if (password.length() < 12) return false;
+
+    //     boolean hasUppercase = false;
+    //     boolean hasLowercase = false;
+    //     boolean hasDigit = false;
+    //     boolean hasWhitespace = false;
+
+    //     int n = password.length();
+
+    //     for (int i = 0; i < n; i++) {
+    //         char c = password.charAt(i);
+    //         if (Character.isUpperCase(c)) hasUppercase = true;
+    //         if (Character.isLowerCase(c)) hasLowercase = true;
+    //         if (Character.isDigit(c)) hasDigit = true;
+    //         if (Character.isWhitespace(c)) hasWhitespace = true;
+    //     }
+
+    //     return hasUppercase && hasLowercase && hasDigit && !hasWhitespace;
+    // } 
 
     /**
      * Checks the strength of multiple passwords and stores the results in a
