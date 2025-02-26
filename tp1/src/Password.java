@@ -67,37 +67,41 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        if (password.length() < 12) return false;
-        if (!password.matches(".*[A-Z].*")) return false;
-        if (!password.matches(".*[a-z].*")) return false;
-        if (!password.matches(".*\\d.*")) return false;
-        if (password.matches(".*\\s.*")) return false;
+        if (password.length() < 12)
+            return false;
+        if (!password.matches(".*[A-Z].*"))
+            return false;
+        if (!password.matches(".*[a-z].*"))
+            return false;
+        if (!password.matches(".*\\d.*"))
+            return false;
+        if (password.matches(".*\\s.*"))
+            return false;
 
         return true;
     }
 
-
     // /* Ou bien en parcourant le mot de passe */
     // public static boolean isStrongPassword_2(String password) {
-    //     if (password.length() < 12) return false;
+    // if (password.length() < 12) return false;
 
-    //     boolean hasUppercase = false;
-    //     boolean hasLowercase = false;
-    //     boolean hasDigit = false;
-    //     boolean hasWhitespace = false;
+    // boolean hasUppercase = false;
+    // boolean hasLowercase = false;
+    // boolean hasDigit = false;
+    // boolean hasWhitespace = false;
 
-    //     int n = password.length();
+    // int n = password.length();
 
-    //     for (int i = 0; i < n; i++) {
-    //         char c = password.charAt(i);
-    //         if (Character.isUpperCase(c)) hasUppercase = true;
-    //         if (Character.isLowerCase(c)) hasLowercase = true;
-    //         if (Character.isDigit(c)) hasDigit = true;
-    //         if (Character.isWhitespace(c)) hasWhitespace = true;
-    //     }
+    // for (int i = 0; i < n; i++) {
+    // char c = password.charAt(i);
+    // if (Character.isUpperCase(c)) hasUppercase = true;
+    // if (Character.isLowerCase(c)) hasLowercase = true;
+    // if (Character.isDigit(c)) hasDigit = true;
+    // if (Character.isWhitespace(c)) hasWhitespace = true;
+    // }
 
-    //     return hasUppercase && hasLowercase && hasDigit && !hasWhitespace;
-    // } 
+    // return hasUppercase && hasLowercase && hasDigit && !hasWhitespace;
+    // }
 
     /**
      * Checks the strength of multiple passwords and stores the results in a
@@ -116,10 +120,9 @@ public class Password {
             boolean bool = isStrongPassword(element);
             map.put(element, bool);
 
+        }
         return map;
 
-        }
-        return null;
     }
 
     /**
@@ -137,7 +140,7 @@ public class Password {
     public static String generatePassword(int nbCar) {
 
         if (nbCar < 4) {
-        throw new IllegalArgumentException("Password length must be at least 4 characters.");
+            throw new IllegalArgumentException("Password length must be at least 4 characters.");
         }
 
         String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -152,9 +155,12 @@ public class Password {
 
         // Ensure at least one character from each required set is included
 
-        /* crée un indice pour chacune des listes de manière aléatoire puis vient sélectionner le character en question */
+        /*
+         * crée un indice pour chacune des listes de manière aléatoire puis vient
+         * sélectionner le character en question
+         */
         /* M. Deneuville propose : */
-        
+
         // Generate random int between 0 and 20
         // SecureRandom random = new SecureRandom();
         // System.out.println(random.nextInt(21));
@@ -178,9 +184,8 @@ public class Password {
             shuffledPassword.append(password.charAt(randPos));
             password.deleteCharAt(randPos);
         }
-        
+        return shuffledPassword.toString();
 
-        return null;
     }
 
     public static void main(String[] args) {
