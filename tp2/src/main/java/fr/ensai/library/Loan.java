@@ -24,4 +24,3 @@ public class Loan {
         return "Item " + item + " borrowed by " + student.getName() + ".";
     }
 }
-
