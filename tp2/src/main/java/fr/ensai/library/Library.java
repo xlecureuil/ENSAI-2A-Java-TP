@@ -3,10 +3,31 @@ package fr.ensai.library;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Library {
+
+    private String nom;
+    private ArrayList<Book> books;
+
+    // Constructeur de la classe Library
+    public Library(String nom) {
+        this.nom = nom;
+        this.books = new ArrayList<>();
+    }
+
+    public void addItem(Book book) {
+        books.add(book);
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
     /**
      * Loads books from a CSV file and adds them to the library.
      * 
@@ -36,13 +57,13 @@ public class Library {
                     // Check if author already exists in the map
                     Author author = authors.get(authorName);
                     if (author == null) {
-                        author = new Author(authorName);
+                        author = new Author(authorName, 1, authorName);
                         authors.put(authorName, author);
                         System.out.println(author.toString());
                     }
                     Book book = new Book(isbn, title, author, year, pageCount);
 
-                    this.addIem(book);
+                    this.addItem(book);
                 }
             }
         } catch (
@@ -52,5 +73,3 @@ public class Library {
         }
     }
 }
-
-

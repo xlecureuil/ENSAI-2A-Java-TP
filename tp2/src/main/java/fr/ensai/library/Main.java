@@ -13,6 +13,14 @@ public class Main {
                 1954,
                 423);
 
+        // Créer une instance de la bibliothèque
+        Library mLibrary = new Library("Bibliothèque des champs libres");
+
+        // Charger les livres à partir du fichier books.csv
+        mLibrary.loadBooksFromCSV("books.csv");
+
+        // Afficher tous les livres
+
         System.out.println(fellowshipOfTheRing.toString());
     }
 }
