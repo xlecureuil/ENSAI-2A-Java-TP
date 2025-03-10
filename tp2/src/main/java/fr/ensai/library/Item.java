@@ -26,5 +26,10 @@ public abstract class Item {
     }
 
     // Abstract method to be implemented by subclasses
-    public abstract void displayInfo();
+    public void displayItems() {
+        System.out.println("Title: " + title);
+        System.out.println("Year: " + year);
+        System.out.println("Page Count: " + pageCount);
+    }
 }
+

@@ -21,7 +21,7 @@ public class Magazine extends Item {
     }
 
     @Override
-    public void displayInfo() {
-        System.out.println("Magazine: " + title + " (" + year + "), ISSN: " + issn + ", Issue: " + issueNumber);
+    public String toString() {
+        return "Magazine " + title ;
     }
 }

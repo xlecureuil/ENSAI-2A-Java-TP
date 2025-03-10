@@ -10,34 +10,34 @@ import java.util.List;
 import java.util.Map;
 
 public class Library {
+    private String name;
+    private List<Item> items;
 
-    private String nom;
-    private ArrayList<Book> books;
-
-    // Constructeur de la classe Library
-    public Library(String nom) {
-        this.nom = nom;
-        this.books = new ArrayList<>();
+    public Library(String name) {
+        this.name = name;
+        this.items = new ArrayList<>();
     }
 
-    public void addItem(Book book) {
-        books.add(book);
+    public void addItem(Item item) {
+        items.add(item);
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public void displayitems() {
+        if (items.isEmpty()) {
+            System.out.println("No items available in the library.");
+        } else {
+            for (Item item : items) {
+                System.out.println(item);
+            }
+        }
     }
 
-    /**
-     * Loads books from a CSV file and adds them to the library.
-     * 
-     * @param filePath The path to the CSV file containing book data.
-     * @throws IOException If there is an error reading the file, an
-     *                     {@link IOException} will be thrown.
-     */
-    public void loadBooksFromCSV(String filePath) {
-
+    public void loadItemsFromCSV(String filePath) {
         URL url = getClass().getClassLoader().getResource(filePath);
+        if (url == null) {
+            System.err.println("File not found: " + filePath);
+            return;
+        }
 
         try (BufferedReader br = new BufferedReader(new FileReader(url.getFile()))) {
             Map<String, Author> authors = new HashMap<>();
@@ -57,18 +57,16 @@ public class Library {
                     // Check if author already exists in the map
                     Author author = authors.get(authorName);
                     if (author == null) {
-                        author = new Author(authorName, 1, authorName);
+                        author = new Author(authorName, 22, "Français");
                         authors.put(authorName, author);
                         System.out.println(author.toString());
                     }
-                    Book book = new Book(isbn, title, author, year, pageCount);
+                    Item item = new Book(isbn, title, author, year, pageCount);
 
-                    this.addItem(book);
+                    this.addItem(item);
                 }
             }
-        } catch (
-
-        IOException e) {
+        } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
     }

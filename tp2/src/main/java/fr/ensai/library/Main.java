@@ -13,11 +13,20 @@ public class Main {
                 1954,
                 423);
 
+        Magazine LesEchos = new Magazine("Les Echos", 2025, 50, "978-0-618-24525-6", "2007");
+
+        Magazine LeMonde = new Magazine("Le Monde", 2025, 25, "978-0-718-24525-6", "10258");
+
         // Créer une instance de la bibliothèque
         Library mLibrary = new Library("Bibliothèque des champs libres");
 
-        // Charger les livres à partir du fichier books.csv
-        mLibrary.loadBooksFromCSV("books.csv");
+        mLibrary.addItem(LeMonde);
+        mLibrary.addItem(LesEchos);
+
+        mLibrary.displayitems();
+
+        // Charger les livres à partir du fichier items.csv
+        mLibrary.loadItemsFromCSV("books.csv");
 
         // Afficher tous les livres
 
