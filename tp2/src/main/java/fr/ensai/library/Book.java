@@ -3,7 +3,7 @@ package fr.ensai.library;
 /**
  * Represents a book.
  */
-public class Book {
+public class Book extends Item {
 
     // Attributes
     private String isbn;
@@ -15,12 +15,10 @@ public class Book {
     /**
      * Constructs a new Book object.
      */
-    public Book(String isbn, String title, Author author, int year, int pageCount) {
+    public Book(String title, int year, int pageCount, String isbn, Author author) {
+        super(title, year, pageCount);
         this.isbn = isbn;
-        this.title = title;
         this.author = author;
-        this.year = year;
-        this.pageCount = pageCount;
     }
 
     public Author getAuthor() {
