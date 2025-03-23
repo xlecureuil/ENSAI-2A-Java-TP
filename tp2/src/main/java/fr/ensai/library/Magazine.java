@@ -11,15 +11,6 @@ public class Magazine extends Item {
         this.issueNumber = issueNumber;
     }
 
-    // Getters
-    public String getIssn() {
-        return issn;
-    }
-
-    public String getIssueNumber() {
-        return issueNumber;
-    }
-
     @Override
     public String toString() {
         return "Magazine " + title ;
