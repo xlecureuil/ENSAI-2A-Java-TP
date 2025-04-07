@@ -43,6 +43,8 @@ public class AthleteService {
         return athleteRepository.save(athlete);
     }
 
+    @Autowired
+    private RegistrationRepository registrationRepository;
     /**
      * Delete an Athlete by id
      */
