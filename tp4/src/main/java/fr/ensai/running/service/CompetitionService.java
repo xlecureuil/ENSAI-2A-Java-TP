@@ -2,6 +2,7 @@ package fr.ensai.running.service;
 
 import fr.ensai.running.model.Athlete;
 import fr.ensai.running.model.Competition;
+import fr.ensai.running.model.Registration;
 import fr.ensai.running.repository.AthleteRepository;
 import fr.ensai.running.repository.CompetitionRepository;
 import fr.ensai.running.repository.RegistrationRepository;
@@ -26,9 +27,14 @@ public class CompetitionService {
     }
 
     public void deleteById(Long id) {
+        // Supprimer les inscriptions liées à cette compétition
+        List<Registration> registrations = registrationRepository.findByCompetitionId(id);
+        registrationRepository.deleteAll(registrations);
+    
+        // Supprimer la compétition
         competitionRepository.deleteById(id);
     }
-
+    
     @Autowired
     private RegistrationRepository registrationRepository;
 

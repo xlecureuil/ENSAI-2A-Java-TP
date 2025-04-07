@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.ensai.running.model.Athlete;
+import fr.ensai.running.model.Registration;
 import fr.ensai.running.repository.AthleteRepository;
+import fr.ensai.running.repository.RegistrationRepository;
 
 @Service
 public class AthleteService {
@@ -45,7 +47,16 @@ public class AthleteService {
      * Delete an Athlete by id
      */
     public void deleteById(Long id) {
+        // Supprimer les inscriptions liées à cet athlète
+        List<Registration> registrations = registrationRepository.findAll()
+            .stream()
+            .filter(r -> r.getAthlete().getId() == id)
+            .toList();
+        registrationRepository.deleteAll(registrations);
+    
+        // Supprimer l’athlète
         athleteRepository.deleteById(id);
         log.warn("Athlete {} deleted", id);
     }
+    
 }
